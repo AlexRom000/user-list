@@ -1,0 +1,25 @@
+@import '../../_variables.scss';
+
+.button {
+    height: 40px;
+    color: $white;
+    width: 140px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+
+
+    &__primary {
+        background-color: $btn-primary;
+    }
+
+    &__danger {
+        background-color: $btn-danger;
+    }
+
+    &:disabled {
+        opacity: .7;
+        cursor: default;
+    }
+}

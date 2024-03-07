@@ -1,0 +1,41 @@
+@import "../../_variables";
+
+.container {
+    display: flex;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.list {
+    width: 100%;
+    margin-right: 16px;
+}
+
+.form {
+    position: relative;
+    width: 0;
+    transition: width 0.2s ease;
+    background-color: $white;
+
+    .close-icon {
+        position: absolute;
+        right: 20px;
+        cursor: pointer;
+        justify-content: flex-end;
+        font-size: 26px;
+    }
+}
+
+
+.form.open {
+    width: 600px;
+    padding: 16px;
+}
+
+.add-button {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}

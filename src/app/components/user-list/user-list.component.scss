@@ -1,0 +1,44 @@
+@import '../../_variables.scss';
+
+:host {
+    display: block;
+    min-height: calc(100vh - 80px);
+    background-color: $white;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 4px;
+
+    &__row {
+        cursor: pointer;
+        background-color: $grey;
+        height: 60px;
+        border-bottom: solid 4px $white;
+
+        &--header {
+            cursor: default;
+            background-color: $white;
+            border-bottom: none;
+        }
+    }
+
+    &__column {
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 200px;
+        max-width: 200px;
+
+        &:first-child {
+            padding-left: 20px;
+        }
+
+        &--header {
+            opacity: 0.4;
+            font-weight: bold;
+        }
+    }
+}

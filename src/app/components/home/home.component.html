@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="list">
+        <app-button class="add-button" (clickEvent)="openForm()" [isDisabled]="false" [text]="'Create User'" [type]="'primary'"></app-button>
+        <app-user-list (openEdit)="openForm($event)"></app-user-list>
+    </div>
+    <div class="form" [ngClass]="{ 'open': isShowedForm }">
+        <div *ngIf="isShowedForm">
+            <span (click)="closeForm()" class="close-icon">&#9747;</span>
+            <app-user-form [user]="selectedUser" (closeEvent)="closeForm()"></app-user-form>
+        </div>
+    </div>
+</div>
+
+<app-toast></app-toast>

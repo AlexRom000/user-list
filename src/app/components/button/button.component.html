@@ -1,0 +1,7 @@
+<button 
+    class="button" 
+    (click)="submit()"
+    [disabled]="isDisabled" 
+    [ngClass]="{'button__danger' : type === 'danger', 'button__primary' : type === 'primary'}">
+        {{text}}
+</button>

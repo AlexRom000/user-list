@@ -1,0 +1,104 @@
+<ng-container *ngIf="user?.id; else header">
+    <div class="form-title">{{user.firstName + ' ' + user.lastName}}</div>
+</ng-container>
+
+<form class="form" [formGroup]="form" novalidate>
+    <div class="form__group">
+        <label class="form__label">
+            User name<i>&#9913;</i>
+            <input 
+                class="form__control"
+                [class.form__control--invalid]="form.controls['userName'].touched && form.controls['userName'].status === 'INVALID'"
+                appFormValidation 
+                [validationMessages]="{'required': 'User name is required', 'unique': 'User name should be unique.'}" 
+                formControlName="userName" 
+                type="text">
+        </label>
+    </div>
+    <div class="form__group">
+        <label class="form__label">
+            First name<i>&#9913;</i>
+            <input 
+                class="form__control"
+                [class.form__control--invalid]="form.controls['firstName'].touched && form.controls['firstName'].status === 'INVALID'"
+                appFormValidation
+                [validationMessages]="{'required': 'First name is required'}"
+                formControlName="firstName" 
+                type="text">
+        </label>
+    </div>
+    <div class="form__group">
+        <label class="form__label">
+            Last name<i>&#9913;</i>
+            <input 
+                class="form__control"
+                [class.form__control--invalid]="form.controls['lastName'].touched && form.controls['lastName'].status === 'INVALID'"
+                appFormValidation
+                [validationMessages]="{'required': 'Last name is required'}" 
+                formControlName="lastName"
+                type="text">
+        </label>
+    </div>
+    <div class="form__group">
+        <label class="form__label">
+            Type<i>&#9913;</i>
+            <select 
+                class="form__control"
+                [class.form__control--invalid]="form.controls['type'].touched && form.controls['type'].status === 'INVALID'"
+                appFormValidation
+                [validationMessages]="{'required': 'User type is required'}"
+                formControlName="type">
+                    <option *ngFor="let type of userTypes" [value]="type">{{type}}</option>
+            </select>
+        </label>
+    </div>
+    <div class="form__group">
+        <label class="form__label">
+            Email<i>&#9913;</i>
+            <input
+                class="form__control"
+                [class.form__control--invalid]="form.controls['email'].touched && form.controls['email'].status === 'INVALID'"
+                appFormValidation
+                [validationMessages]="{'required': 'Email is required', 'email': 'Email format is incorect'}"
+                formControlName="email" 
+                type="text">
+        </label>
+    </div>
+    <div class="form__group">
+        <label class="form__label">
+            Password<i>&#9913;</i>
+            <input 
+                class="form__control"
+                [class.form__control--invalid]="form.controls['password'].touched && form.controls['password'].status === 'INVALID'"
+                appFormValidation
+                [validationMessages]="{'required': 'Password is required', 'minlength': 'Minimum length is 8', 'pattern': 'Password should include at least 1 number and 1 letter'}"
+                formControlName="password" 
+                type="text">
+        </label>
+    </div>
+    <div class="form__group">
+        <label class="form__label">
+            Repeat password<i>&#9913;</i>
+            <input 
+                class="form__control"
+                [class.form__control--invalid]="form.controls['repeatPassword'].touched && form.controls['repeatPassword'].status === 'INVALID'"
+                appFormValidation
+                [validationMessages]="{'required': 'Please repeat your password', 'mismatch': 'Password doesn`t match'}"
+                formControlName="repeatPassword"
+                type="text">
+        </label>
+    </div>
+    <div class="form__buttons" [class.form__buttons--single]="isAddMode">
+        <ng-container *ngIf="isEditMode">
+            <app-button (clickEvent)="deleteUser()" [isDisabled]="false" [text]="'Delete'" [type]="'danger'"></app-button>
+            <app-button (clickEvent)="editUser()" [isDisabled]="!form.valid" [text]="'Save'" [type]="'primary'"></app-button>
+        </ng-container>
+        <ng-container *ngIf="isAddMode">
+            <app-button (clickEvent)="createUser()" [isDisabled]="!form.valid" [text]="'Create'" [type]="'primary'"></app-button>
+        </ng-container>
+    </div>
+</form>
+
+<ng-template #header>
+    <div class="form-title">Create new user</div>
+</ng-template>
